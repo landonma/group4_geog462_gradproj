@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/favshape" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
