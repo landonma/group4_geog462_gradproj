@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/fav_layer" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>
