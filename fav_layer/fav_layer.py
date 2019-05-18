@@ -101,7 +101,6 @@ class favLayer:
 
         :param icon_path: Path to the icon for this action. Can be a resource
             path (e.g. ':/plugins/foo/bar.png') or a normal file system path.
-        :type icon_path: str
 
         :param text: Text that should be shown in menu items for this action.
         :type text: str
@@ -182,8 +181,15 @@ class favLayer:
                 action)
             self.iface.removeToolBarIcon(action)
 
+
+########################################### All of out functions should be between these###################################
     def printsomething(self):
         print("test")
+
+
+
+
+#########################################################################################################################
 
 
     def run(self):
@@ -198,12 +204,10 @@ class favLayer:
 
         # fetch currently loaded layers
         self.dlg.comboBox.clear()
-
-
         # show the dialog
         self.dlg.show()
 
-
+############################# All button, list connections() should be between theses ###################################
         layer_list = ["one","two","four"]
         # with open(
         #         "C:\\Users\\Mark\\AppData\\Roaming\\QGIS\\QGIS3\\profiles\\default\\python\\plugins\\fav_layer\\text.txt",
@@ -212,6 +216,8 @@ class favLayer:
         #         layer_list.append(lines)
 
         self.dlg.comboBox.addItems(layer_list)
+
+#######################################################################################################################
 
         # Run the dialog event loop
         result = self.dlg.exec_()
