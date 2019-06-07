@@ -184,6 +184,16 @@ class favLayer:
 
 
 ########################################### All of out functions should be between these###################################
+
+    # this is what a command looks like for an object
+    # self.dlf.addToListButton. then add a command after this based on those avaible from the documentation
+    # https: // doc.qt.io / archives / qt - 4.8 / qpushbutton.html
+    # list of objects in the UI
+    # addToCanvasButton (QPushButton)
+    # deleteButton (QPushButton)
+    # displayedList (QListWidget)
+    # fileWidget (QFileWidget)
+
     def printsomething(self):
         print("test")
 

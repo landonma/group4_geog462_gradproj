@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="51611a7b-fdd7-4bac-b473-f8eb07ee0375" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/fav_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/fav_layer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fav_layer_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/fav_layer_dialog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fav_layer_dialog_base.ui" beforeDir="false" afterPath="$PROJECT_DIR$/fav_layer_dialog_base.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fav_layer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="201" column="31" lean-forward="true" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="31" />
+            <state relative-caret-position="135">
+              <caret line="189" column="4" selection-start-line="189" selection-start-column="4" selection-end-line="189" selection-end-column="4" />
               <folding>
                 <element signature="e#1176#1251#0" expanded="true" />
               </folding>
@@ -59,9 +55,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="23" />
+    <option name="x" value="-39" />
+    <option name="y" value="153" />
     <option name="width" value="1798" />
-    <option name="height" value="1047" />
+    <option name="height" value="995" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -117,7 +114,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="0" width="1798" height="1047" extended-state="1" />
+    <frame x="23" y="0" width="1798" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25546604" />
@@ -154,8 +151,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fav_layer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="201" column="31" lean-forward="true" selection-start-line="201" selection-start-column="31" selection-end-line="201" selection-end-column="31" />
+        <state relative-caret-position="135">
+          <caret line="189" column="4" selection-start-line="189" selection-start-column="4" selection-end-line="189" selection-end-column="4" />
           <folding>
             <element signature="e#1176#1251#0" expanded="true" />
           </folding>
