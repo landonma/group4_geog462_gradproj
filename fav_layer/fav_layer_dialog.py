@@ -14,8 +14,8 @@
 
 /***************************************************************************
  *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
+ *   List of QtObjects *
+ *     *
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
  *                                                                         *
@@ -26,11 +26,11 @@ import os
 
 from PyQt5 import uic
 from PyQt5 import QtWidgets
+from fav_layer import *
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'fav_layer_dialog_base.ui'))
-
 
 class favLayerDialog(QtWidgets.QDialog, FORM_CLASS):
     def __init__(self, parent=None):
@@ -42,67 +42,3 @@ class favLayerDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-
-
-        def getFileLocation(self): # Mark will do this function
-            '''
-            This function activates when the user presses the imnport button in the interface.
-            It connects to the file path widget and captures the text inside as s tring that the user saves.
-            The function should use a try clause in order to make sure the path is valid.
-            Also check that the file selected is a data type that can be imported. (like a feature class or raster)
-            Input:The text captured by the file widget.
-            Output:The file location saved as a string.
-            '''
-
-        def addStringToDisplayedList(self): # Jillian will do this function
-            '''
-            This function runs after get file location.
-            This function takes the file path string and clips it down to just the final folder and file name.
-            It takes this string and saves it to the end of the displayed list and repoptutes the displayed list.
-            Input:String with file path.
-            Output:Updated displayed list.
-            '''
-
-        def addLocationToHiddenList(self): # Jillian will do this function
-            '''
-            This function runs after the add string to displayed list.
-            This function takes the file location and adds it to the hidden list.
-            Read the hidden list, append the file name to the end of the hidden list.
-            Input:The file location.
-            Output:Updated hidden list in the UI.
-            '''
-
-        def addLayerToMap(self): # Mark will do this function
-            '''
-            This function runs when the user presses the add to map button.
-            This function captures the index in the displayed list that the user has selected,
-            then uses the string attached to the hidden list with that index and loads the file for that given path.
-            First, use a try clause to see if the user has selected something.
-            If the user has selected something, return the index of the displayed list to an object.
-            Use the index in the hidden list to capture the string for that file.
-            Check the file extension.
-            Use if statements to point to the correct way of loading that file type.
-            Input:The index number captured from the user.
-            Output:Loads the file into QGIS.
-            '''
-
-        def checkForLists(self): # Christine will do this function
-            '''
-            This function looks in the master path for lists (hidden and displayed) that were previously saved.
-            If a list is missing, this function creates a new list of that type and saves it as a global variable.
-            If the file is there, it saves it to a global variable.
-            Then the function populates the list box with the displayed list.
-            Input:Master path of lists.
-            Output:Loading the displayed list into the UI.
-            '''
-
-        def deleteFromLists(self): # Christine will do this function
-            '''
-            This function activates when the user presses the "X" button.
-            First, the function checks to see whether the user selected anything from the displayed list in a try clause.
-            If the user did select soemthing, the index is saved as an object.
-            The object at that index is then popped off the displayed and the hidden list.
-            Then the displayed list is repopulated in the UI.
-            Input:The index number captured from the user.
-            Output:Displayed list with fewer items.
-            '''

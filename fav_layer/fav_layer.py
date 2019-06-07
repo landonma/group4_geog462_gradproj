@@ -31,8 +31,9 @@ from .resources import *
 # Import the code for the dialog
 from .fav_layer_dialog import favLayerDialog
 import os.path
-
-
+testDisplayList = [r"documents\parcel.shp", r"downloads\NLCD.tif"]
+testHiddenList = [r"C:\Users\Mark\Documents\parcels.shp", r"C:\Users\Mark\downloads\NLCD.tif" ]
+testFilePath = [r"C:\Users\Mark\downloads\NLCD.tif"]
 class favLayer:
     """QGIS Plugin Implementation."""
 
@@ -186,10 +187,79 @@ class favLayer:
     def printsomething(self):
         print("test")
 
+    def getFileLocation(self):  # Mark will do this function
+        '''
+        This function activates when the user presses the imnport button in the interface.
+        It connects to the file path widget and captures the text inside as s tring that the user saves.
+        The function should use a try clause in order to make sure the path is valid.
+        Also check that the file selected is a data type that can be imported. (like a feature class or raster)
+        Input:The text captured by the file widget.
+        Output:The file location saved as a string.
+        '''
+        #Connect to file path widget
+        #filepath =self.dlg.fileWidget()
+        global filepath
+        filepath = testFilePath
+        self.addStringToDisplayedList()
 
+    def addStringToDisplayedList(self):  # Jillian will do this function
+        '''
+        This function runs after getfilelocation.
+        This function takes the file path string and clips it down to just the final folder and file name.
+        It takes this string and saves it to the end of the displayed list and repoptutes the displayed list.
+        Input:String with file path.
+        Output:Updated displayed list.
+        '''
+        #use split to split string by / into a list, then get the last couple items that contain the file
+        # name and last folder and join them and make sure the / is there and doubled if nessiary
 
+    def addLocationToHiddenList(self):  # Jillian will do this function
+        '''
+        This function runs after the addstringtodisplayedlist.
+        This function takes the file location and adds it to the hidden list.
+        Read the hidden list, append the file name to the end of the hidden list.
+        Input:The file location.
+        Output:Updated hidden list in the UI.
+        '''
 
-#########################################################################################################################
+    def addLayerToMap(self):  # Mark will do this function
+        '''
+        This function runs when the user presses the add to map button.
+        This function captures the index in the displayed list that the user has selected,
+        then uses the string attached to the hidden list with that index and loads the file for that given path.
+        First, use a try clause to see if the user has selected something.
+        If the user has selected something, return the index of the displayed list to an object.
+        Use the index in the hidden list to capture the string for that file.
+        Check the file extension.
+        Use if statements to point to the correct way of loading that file type.
+        Input:The index number captured from the user.
+        Output:Loads the file into QGIS.
+        '''
+
+    def checkForLists(self):  # Christine will do this function
+        '''
+        This funtion should run when the plugin loads
+        This function looks in the master path for lists (hidden and displayed) that were previously saved.
+        If a list is missing, this function creates a new list of that type and saves it as a global variable.
+        If the file is there, it saves it to a global variable.
+        Then the function populates the list box with the displayed list.
+        Input:Master path of lists.
+        Output:Loading the displayed list into the UI.
+        '''
+        # should use os.exists i think
+
+    def deleteFromLists(self):  # Christine will do this function
+        '''
+        This function activates when the user presses the "X" button.
+        First, the function checks to see whether the user selected anything from the displayed list in a try clause.
+        If the user did select soemthing, the index is saved as an object.
+        The object at that index is then popped off the displayed and the hidden list.
+        Then the displayed list is repopulated in the UI.
+        Input:The index number captured from the user.
+        Output:Displayed list with fewer items.
+        '''
+
+    #########################################################################################################################
 
 
     def run(self):
@@ -200,12 +270,13 @@ class favLayer:
         if self.first_start == True:
             self.first_start = False
             self.dlg = favLayerDialog()
-            self.dlg.pushButton_2.clicked.connect(self.printsomething)
+            #self.dlg.pushButton_2.clicked.connect(self.printsomething)
 
         # fetch currently loaded layers
-        self.dlg.comboBox.clear()
+        #self.dlg.comboBox.clear()
         # show the dialog
         self.dlg.show()
+        self.dlg.addToListButton.clicked.connect(self.getFileLocation)
 
 ############################# All button, list connections() should be between theses ###################################
         layer_list = ["one","two","four"]
@@ -215,7 +286,8 @@ class favLayer:
         #     for lines in file:
         #         layer_list.append(lines)
 
-        self.dlg.comboBox.addItems(layer_list)
+        #self.dlg.comboBox.addItems(layer_list)
+
 
 #######################################################################################################################
 

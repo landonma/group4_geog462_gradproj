@@ -7,17 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>330</width>
-    <height>403</height>
+    <height>302</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="selectFileLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>10</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -26,21 +26,11 @@
     <string>Select Shpe File</string>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QPushButton" name="addToListButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>30</y>
-     <width>251</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>100</y>
+     <x>110</x>
+     <y>40</y>
      <width>91</width>
      <height>23</height>
     </rect>
@@ -49,11 +39,11 @@
     <string>Add To Favoties</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="favoritesLabel">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>160</y>
+     <x>130</x>
+     <y>80</y>
      <width>47</width>
      <height>13</height>
     </rect>
@@ -62,11 +52,11 @@
     <string>Favorites</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="addToCanvasButton">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>350</y>
+     <x>80</x>
+     <y>270</y>
      <width>151</width>
      <height>23</height>
     </rect>
@@ -75,21 +65,21 @@
     <string>Add Shape File to Canvas</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget">
+  <widget class="QListWidget" name="dislplayedList">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>180</y>
+     <x>30</x>
+     <y>100</y>
      <width>241</width>
      <height>161</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="deleteButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>240</y>
+     <x>280</x>
+     <y>160</y>
      <width>21</width>
      <height>23</height>
     </rect>
@@ -98,24 +88,29 @@
     <string>X</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QgsFileWidget" name="fileWidget">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>100</y>
-     <width>113</width>
-     <height>20</height>
+     <x>90</x>
+     <y>10</y>
+     <width>181</width>
+     <height>27</height>
     </rect>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsFileWidget</class>
+   <extends>QWidget</extends>
+   <header>qgsfilewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
-  <tabstop>lineEdit</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>listWidget</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>pushButton_3</tabstop>
+  <tabstop>addToListButton</tabstop>
+  <tabstop>dislplayedList</tabstop>
+  <tabstop>addToCanvasButton</tabstop>
+  <tabstop>deleteButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>
