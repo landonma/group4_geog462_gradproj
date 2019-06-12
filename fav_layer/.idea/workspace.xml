@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51611a7b-fdd7-4bac-b473-f8eb07ee0375" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fav_layer.py" beforeDir="false" afterPath="$PROJECT_DIR$/fav_layer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tester.py" beforeDir="false" afterPath="$PROJECT_DIR$/tester.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fav_layer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="225" column="39" lean-forward="true" selection-start-line="224" selection-start-column="39" selection-end-line="225" selection-end-column="39" />
+            <state relative-caret-position="1800">
+              <caret line="213" column="22" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="22" />
               <folding>
                 <element signature="e#1176#1251#0" expanded="true" />
               </folding>
@@ -41,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tester.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+            <state relative-caret-position="544">
+              <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -63,6 +62,10 @@
       <find>dlg</find>
       <find>prin</find>
       <find>filepath</find>
+      <find>hidd</find>
+      <find>clicked</find>
+      <find>addlocation</find>
+      <find>addString</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -77,9 +80,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="50" />
-    <option name="y" value="5" />
+    <option name="y" value="48" />
     <option name="width" value="1794" />
     <option name="height" value="995" />
   </component>
@@ -165,15 +168,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="5" width="1794" height="995" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26182237" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24200426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35266823" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.06608884" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39907193" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -190,13 +193,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fav_layer_dialog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -207,10 +203,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fav_layer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="225" column="39" lean-forward="true" selection-start-line="224" selection-start-column="39" selection-end-line="225" selection-end-column="39" />
+        <state relative-caret-position="1800">
+          <caret line="213" column="22" selection-start-line="213" selection-start-column="13" selection-end-line="213" selection-end-column="22" />
           <folding>
             <element signature="e#1176#1251#0" expanded="true" />
           </folding>

@@ -37,3 +37,5 @@ with open("Lists\\displayedlist.txt", "w+") as f:
 
 hiddenExists = os.path.isfile('C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt')
 print(hiddenExists)
+
+hiddenList.index()
