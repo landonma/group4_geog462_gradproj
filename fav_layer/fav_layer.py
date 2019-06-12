@@ -25,6 +25,7 @@ from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QFileDialog
 from qgis.core import QgsProject
+from qgis.gui import QgsFileWidget
 
 # Initialize Qt resources from file resources.py
 from .resources import *
@@ -194,9 +195,6 @@ class favLayer:
     # displayedList (QListWidget)
     # fileWidget (QFileWidget)
 
-    def printsomething(self):
-        print("test")
-
     def getFileLocation(self):  # Mark will do this function
         '''
         This function activates when the user presses the imnport button in the interface.
@@ -207,12 +205,11 @@ class favLayer:
         Output:The file location saved as a string.
         '''
         #Connect to file path widget
-        #filepath =self.dlg.fileWidget()
-        global filepath
-        filepath = testFilePath
-        self.addStringToDisplayedList()
+        filepath = ""
+        filepath =self.dlg.fileWidget.filePath()
+        self.addStringToDisplayedList(filepath)
 
-    def addStringToDisplayedList(self):  # Jillian will do this function
+    def addStringToDisplayedList(self,filepath):  # Jillian will do this function
         '''
         This function runs after getfilelocation.
         This function takes the file path string and clips it down to just the final folder and file name.
@@ -222,8 +219,13 @@ class favLayer:
         '''
         #use split to split string by / into a list, then get the last couple items that contain the file
         # name and last folder and join them and make sure the / is there and doubled if nessiary
+        displayedList.append(filepath)
+        with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt", "w+") as f:
+            for lines in displayedList:
+                f.write("%s\n" % lines)
+        self.addLocationToHiddenList(filepath)
 
-    def addLocationToHiddenList(self):  # Jillian will do this function
+    def addLocationToHiddenList(self,filepath):  # Jillian will do this function
         '''
         This function runs after the addstringtodisplayedlist.
         This function takes the file location and adds it to the hidden list.
@@ -231,6 +233,15 @@ class favLayer:
         Input:The file location.
         Output:Updated hidden list in the UI.
         '''
+        filepath = str(filepath)
+        print(filepath)
+        filepath = filepath.split("\\")
+        cleanpath = filepath[-2] + '\\' + filepath[-1]
+        print("clean path" + str(cleanpath))
+        with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddendlist.txt", "w+") as f:
+            for lines in hiddenList:
+                f.write("%s\n" % lines)
+
 
     def addLayerToMap(self):  # Mark will do this function
         '''
@@ -258,6 +269,25 @@ class favLayer:
         '''
         # should use os.exists i think
 
+        hiddenExists = os.path.isfile('C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt')
+        displayedExists = os.path.isfile('C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt')
+        print(os.getcwd())
+        global hiddenList
+        if hiddenExists:
+            hiddenList = [line.rstrip('\n') for line in open('C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt')]
+
+        if not hiddenExists:
+            hiddenList = open("C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt", "w+")
+            hiddenList = [line.rstrip('\n') for line in open('C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt')]
+        global displayedList
+        if displayedExists:
+            displayedList = [line.rstrip('\n') for line in open("C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt")]
+
+        if not displayedExists:
+            displayedList = open("C:\\Users\\Mark\\Documents\\fav_layerLists\\Lists\\displayedlist.txt", "w+")
+            displayedList = [line.rstrip('\n') for line in open("C:\\Users\\Mark\\Documents\\fav_layerLists\\Lists\\displayedlist.txt")]
+        print("hiddenExists "+ str(hiddenExists))
+
     def deleteFromLists(self):  # Christine will do this function
         '''
         This function activates when the user presses the "X" button.
@@ -280,11 +310,14 @@ class favLayer:
         if self.first_start == True:
             self.first_start = False
             self.dlg = favLayerDialog()
+            self.checkForLists()
+            #fileWidget = QgsFileWidget(self.dlg)
+            #self.dlg.fileWidget.setGeometry(QtCore.QRect(90, 10, 181, 27))
             #self.dlg.pushButton_2.clicked.connect(self.printsomething)
-
         # fetch currently loaded layers
         #self.dlg.comboBox.clear()
         # show the dialog
+
         self.dlg.show()
         self.dlg.addToListButton.clicked.connect(self.getFileLocation)
 
