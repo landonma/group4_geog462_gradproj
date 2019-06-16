@@ -128,7 +128,11 @@ class favLayer:
 
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
-
+        self.actionRun = QAction(
+            QIcon(os.path.join(os.path.dirname(__file__), "icon.png")),
+            "Reload chosen plugin",
+            self.iface.mainWindow()
+        )
         icon_path = ':/plugins/fav_layer/icon.png'
         self.add_action(
             icon_path,
@@ -170,14 +174,13 @@ class favLayer:
         Output:The file location saved as a string.
         '''
         #Connect to file path widget
-        filepath = ""
-        try:
-            filepath =self.dlg.fileWidget.filePath()
-            process = True
-        except:
-            QMessageBox.about(self, "Please Select a File", "Please select a file you wish to add to your favorites by using the line above.")
-            process = False
-        if process:
+        filepath = self.dlg.fileWidget.filePath() # get file path from file path widget
+        selected = True
+        if filepath == "": # if there is nothing in file path show the message below
+            QMessageBox.question(self.dlg, 'No File Selected!',
+                                 "Please select a file you want to add to the list first.", QMessageBox.Ok)
+            selected = False
+        if selected == True: # if there is something in filepath go to the next function
             self.addLocationToHiddenList(filepath)
     def addStringToDisplayedList(self,filepath):  # Jillian will do this function
         '''
@@ -187,17 +190,15 @@ class favLayer:
         Input:String with file path.
         Output:Updated displayed list.
         '''
-        #use split to split string by / into a list, then get the last couple items that contain the file
-        # name and last folder and join them and make sure the / is there and doubled if nessiary
-        filepath = str(filepath)
-        filepathsplit = filepath.split("\\")
-        cleanpath = filepathsplit[-2] + '\\' + filepathsplit[-1]
-        print("clean path" + str(cleanpath))
+
+        filepath = str(filepath) # converts filepath to string
+        filepathsplit = filepath.split("\\") # splits it py the \\
+        cleanpath = filepathsplit[-2] + '\\' + filepathsplit[-1] # recombines the last two parts (folder and file name)
         displayedList.append(cleanpath)
-        with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt", "w+") as f:
+        with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt", "w+") as f: # save displayed to txt file
             for lines in displayedList:
                 f.write("%s\n" % lines)
-        self.dlg.dislplayedList.addItem(cleanpath)
+        self.dlg.dislplayedList.addItem(cleanpath) # cleanpath to list widget in the UI
 
     def addLocationToHiddenList(self,filepath):  # Jillian will do this function
         '''
@@ -207,11 +208,11 @@ class favLayer:
         Input:The file location.
         Output:Updated hidden list in the UI.
         '''
-        hiddenList.append(filepath)
-        with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt", "w+") as f:
+        hiddenList.append(filepath) # add full file path to hidden list
+        with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt", "w+") as f: # write to txt
             for lines in hiddenList:
                 f.write("%s\n" % lines)
-        self.addStringToDisplayedList(filepath)
+        self.addStringToDisplayedList(filepath) # next function
 
 
     def addLayerToMap(self):  # Mark will do this function
@@ -227,10 +228,19 @@ class favLayer:
         Input:The index number captured from the user.
         Output:Loads the file into QGIS.
         '''
-        print("inside function")
-        fileIndex = displayedList.index(selectedLayer)
-        vlayer = QgsVectorLayer(hiddenList[fileIndex], "layer_name_you_like", "ogr")
-        vlayer = self.iface.addVectorLayer(hiddenList[fileIndex], "Ports layer", "ogr")
+        fileIndex3 = displayedList.index(selectedLayer) # these lines make both the usable name and index
+        fileIndex = selectedLayer
+        fileIndexending =fileIndex.split(".")
+        fileIndexname = fileIndexending[-2]
+        fileIndexending = fileIndexending[-1]
+        fileIndexname = fileIndexname.split("\\")
+        fileIndexname = fileIndexname[-1]
+
+        #vlayer = QgsVectorLayer(hiddenList[fileIndex3], "layer_name_you_like", "ogr")
+        if fileIndexending == "shp": # add shape file to map
+            vlayer = self.iface.addVectorLayer(hiddenList[fileIndex3], fileIndexname, "ogr")
+        if fileIndexending == "tif":# add tif to map
+            rlayer = self.iface.QgsRasterLayer(hiddenList[fileIndex3], fileIndexname, "gdal")
 
     def checkForLists(self):  # Christine will do this function
         '''
@@ -242,7 +252,6 @@ class favLayer:
         Input:Master path of lists.
         Output:Loading the displayed list into the UI.
         '''
-        # should use os.exists i think
 
         hiddenExists = os.path.isfile('C:\\Users\\Mark\\Documents\\fav_layerLists\\hiddenlist.txt')
         displayedExists = os.path.isfile('C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt')
@@ -266,17 +275,16 @@ class favLayer:
         for item in displayedList:
             self.dlg.dislplayedList.addItem(item)
 
-    def deleteFromLists(self):  # Christine will do this function
+    def deleteFromLists(self):
         '''
         This function activates when the user presses the "X" button.
-        First, the function checks to see whether the user selected anything from the displayed list in a try clause.
         If the user did select soemthing, the index is saved as an object.
         The object at that index is then popped off the displayed and the hidden list.
         Then the displayed list is repopulated in the UI.
-        Input:The index number captured from the user.
+        Input:The text capture from the user selection.
         Output:Displayed list with fewer items.
         '''
-        if not len(selectedLayer) == 0:
+        try:
             for SelectedItem in self.dlg.dislplayedList.selectedItems():
                 self.dlg.dislplayedList.takeItem(self.dlg.dislplayedList.row(SelectedItem))
             indexpop = displayedList.index(selectedLayer)
@@ -290,15 +298,15 @@ class favLayer:
             with open("C:\\Users\\Mark\\Documents\\fav_layerLists\\displayedlist.txt", "w+") as f:
                 for lines in displayedList:
                     f.write("%s\n" % lines)
+        except:
+            QMessageBox.question(self.dlg, 'No Item Selected!',
+                                                "Please select an item you want to remove from the list first.", QMessageBox.Ok)
 
     def getSelectedString(self):
         print (self.dlg.dislplayedList.currentItem().text())
-
-        #print(str(x.text())for x in self.dlg.dislplayedList.selectedItems())
         global selectedLayer
         selectedLayer = self.dlg.dislplayedList.currentItem().text()
-        #print(selectedLayers)
-        #print(sdfsd)
+
     #########################################################################################################################
 
 
@@ -311,30 +319,14 @@ class favLayer:
             self.first_start = False
             self.dlg = favLayerDialog()
             self.checkForLists()
-            #fileWidget = QgsFileWidget(self.dlg)
-            #self.dlg.fileWidget.setGeometry(QtCore.QRect(90, 10, 181, 27))
-            #self.dlg.pushButton_2.clicked.connect(self.printsomething)
-        # fetch currently loaded layers
-        #self.dlg.comboBox.clear()
-        # show the dialog
-        self.dlg.dislplayedList.itemActivated.connect(self.getSelectedString)
-        self.dlg.deleteButton.clicked.connect(self.deleteFromLists)
-        self.dlg.addToListButton.clicked.connect(self.getFileLocation)
-        self.dlg.addToCanvasButton.clicked.connect(self.addLayerToMap)
-        self.dlg.show()
 
-############################# All button, list connections() should be between theses ###################################
-        layer_list = ["one","two","four"]
-        # with open(
-        #         "C:\\Users\\Mark\\AppData\\Roaming\\QGIS\\QGIS3\\profiles\\default\\python\\plugins\\fav_layer\\text.txt",
-        #         "r") as file:
-        #     for lines in file:
-        #         layer_list.append(lines)
-
-        #self.dlg.comboBox.addItems(layer_list)
+        self.dlg.dislplayedList.itemActivated.connect(self.getSelectedString) # get text when item is selected
+        self.dlg.deleteButton.clicked.connect(self.deleteFromLists) # Delete item when X is clicked
+        self.dlg.addToListButton.clicked.connect(self.getFileLocation) # Get filepath when add to favorites is clicked
+        self.dlg.addToCanvasButton.clicked.connect(self.addLayerToMap) # Add layer to current map when add to canvas is clicked
+        self.dlg.show() # Show the tool interface to the user
 
 
-#######################################################################################################################
 
         # Run the dialog event loop
         result = self.dlg.exec_()
